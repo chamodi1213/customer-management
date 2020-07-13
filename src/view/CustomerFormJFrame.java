@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package customermanagementsystem;
+package view;
+
+import service.CustomerService;
 
 /**
  *
  * @author Chamodi
  */
 public class CustomerFormJFrame extends javax.swing.JFrame {
-    private MainForm form;
+    private final MainForm form;
     /**
      * Creates new form NewJFrame
      */
-    private String fname;
-    private String lname;
-    private String emailad;
     public CustomerFormJFrame(MainForm form) {
         this.form = form;
         initComponents();
@@ -40,7 +39,7 @@ public class CustomerFormJFrame extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("First name");
 
@@ -146,11 +145,11 @@ public class CustomerFormJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        fname = firstName.getText();
-        lname = lastName.getText();
-        emailad = email.getText();
-        DatabaseManager databaseManager = new DatabaseManager();
-        databaseManager.saveCustomer(fname, lname, emailad);
+        String fname = firstName.getText();
+        String lname = lastName.getText();
+        String emailad = email.getText();
+        CustomerService customerService = new CustomerService();
+        customerService.saveCustomer(fname, lname, emailad);
         form.getdata();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -164,32 +163,6 @@ public class CustomerFormJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerFormJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerFormJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerFormJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerFormJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField email;

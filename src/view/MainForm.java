@@ -3,32 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package customermanagementsystem;
+package view;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import javafx.scene.control.TableColumn;
 import javax.swing.JButton;
-
+import model.Customer;
+import service.CustomerService;
 /**
  *
  * @author Chamodi
  */
 public class MainForm extends javax.swing.JFrame {
-    DatabaseManager db = new DatabaseManager();
+    CustomerService customerService;
+    private List<Customer> customers;
 
     /**
      * Creates new form CustomerFrame
      */
     public MainForm() {
+        this.customerService = new CustomerService();
         initComponents();
         getdata();
     }
     
+//    private void setFormData(){
+//        getdata();
+//    }
+    
     public void getdata(){
-        DatabaseManager dbm = new DatabaseManager();
-        List<Customer> customers = dbm.getAllCustomers();
+        customers = customerService.getAllCustomers();
         Object [][] data = new Object[customers.size()][4];
         for (int i = 0; i < customers.size(); i++) {
             Customer get = customers.get(i);
@@ -155,10 +161,8 @@ public class MainForm extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
            Object id = jTable1.getValueAt(jTable1.getSelectedRow(), 0);
            int c_id = Integer.parseInt(id.toString());
-           db.deleteCustomer(c_id);
+           customerService.deleteCustomer(c_id);
            getdata();
-//        String [] details = jTable1.get
-//        db.deleteCustomer("Loius", "kasen", "fg@fgrr.com");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
